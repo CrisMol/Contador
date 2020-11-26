@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Contador 2020</title>
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Nerko+One&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Nerko One', cursive;
+}
+
+.container {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background: #2f5498;
+	display: flex;
+}
+
+.container .imgBx {
+	position: relative;
+	width: 550px;
+	height: 100%;
+	background: url(img/black-3.jpg);
+	background-size: cover;
+}
+
+
+.container .countDownBx {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: calc(100% - 500px);
+}
+
+.container .countDownBx img {
+	position: absolute;
+	top: 0;
+	margin-bottom: 25px;
+	width: 250px;
+	height: 200px;
+	animation-duration: 2s;
+  	animation-name: slidein;
+}
+
+.container .countDownBx h2 {
+	text-align: center;
+	font-size: 1.5em;
+	color: orange;
+	text-transform: uppercase;
+	letter-spacing: 4px;
+	font-weight: 500;
+	line-height: 4em;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: 0%;
+  }
+}
+
+.container .countDownBx h2 span {
+	font-size: 6em;
+	font-weight: 700;
+	color: #000;
+}
+
+.container .countDownBx h2 span i {
+	font-style: initial;
+	color: #ff0;
+}
+
+.container .countDownBx .countDown {
+	margin-top: 30px;
+	background: rgba(0,0,0,0.1);
+	width: 100%;
+	height: 120px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container .countDownBx .countDown div {
+	position: relative;
+	width: 100px;
+	text-align: center;
+	color: #fff;
+	font-size: 2.5em;
+	font-weight: 500;
+	margin: 0 15px;
+	margin-top: -25px;
+}
+
+.container .countDownBx .countDown div:before {
+	content: 'text';
+	position: absolute;
+	bottom: -30px;
+	left: 0;
+	width: 100%;
+	height: 35px;
+	color: #fff;
+	font-size: 0.35em;
+	font-weight: 500;
+	line-height: 35px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.container .countDownBx .countDown div#day:before {
+	content: 'Días';
+}
+
+.container .countDownBx .countDown div#hour:before {
+	content: 'Horas';
+}
+
+.container .countDownBx .countDown div#minute:before {
+	content: 'Minutos';
+}
+
+.container .countDownBx .countDown div#second:before {
+	content: 'Segundos';
+}
+
+.container .countDownBx .countDown div#second,
+.container .countDownBx .countDown div#second:before {
+	color: #ff0;
+}
+
+@media (max-width: 991px) {
+	.container .imgBx {
+		display: none;
+	}
+
+	.container .countDownBx {
+		width: 100%;
+	}
+}
+
+@media (max-width: 600px) {
+	.container .countDownBx h2 {
+		font-size: 1.1em;
+	}
+
+	.container .countDownBx .countDown {
+		height: 100px;
+	}
+
+	.container .countDownBx .countDown div {
+		width: 80px;
+		font-size: 2em;
+		margin: 0;
+		margin-top: -25px;
+	}
+}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="imgBx"></div>
+		<div class="countDownBx">
+			<img src="img/log.png">
+			<h2>Descuento a un solo Click!<br><span>Black <i>Friday</i></span></h2>
+			<div class="countDown">
+				<div id="day">NA</div>
+				<div id="hour">NA</div>
+				<div id="minute">NA</div>
+				<div id="second">NA</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		const countDate = new Date('november 27, 2020 00:00:00').getTime();
+
+		function newBlack(){
+			const now = new Date().getTime();
+			gap = countDate - now;
+
+			const second = 1000;
+			const minute = second * 60;
+			const hour = minute * 60;
+			const day = hour * 24;
+
+			const d = Math.floor(gap / (day));
+			const h = Math.floor((gap % (day)) / (hour));
+			const m = Math.floor((gap % (hour)) / (minute));
+			const s = Math.floor((gap % (minute)) / (second));
+
+			document.getElementById('day').innerText = d;
+			document.getElementById('hour').innerText = h;
+			document.getElementById('minute').innerText = m;
+			document.getElementById('second').innerText = s;
+		}
+
+		setInterval(function(){
+			newBlack();
+		},1000)
+	</script>
+</body>
+</html>
